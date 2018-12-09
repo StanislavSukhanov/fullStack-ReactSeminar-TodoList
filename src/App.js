@@ -12,22 +12,40 @@ const Title = (props) => {
   )
 }
 
+const TodoForm = ({addTodo}) => {
+  let input;
 
-const Todo = ({ todo, remove }) => {
+  return(
+    <div>
+      <input ref={ node => {
+          input = node;
+        }} />
+
+      <button onClick={ () => {
+        addTodo(input.value);
+        input.value = '';
+        }}> + Add</button>
+    </div>
+  );
+};
+
+
+const Todo = ({ todo, remove, complete }) => {
   // each todo 
   return(
     <li>
-      {todo.title}
-      <b style={{cursor: 'pointer'}} onClick={() => remove(todo)}>+</b>
+      <span className={todo.completed ? 'completed' : null  }>{todo.title}</span>
+      <b style={{cursor: 'pointer'}} onClick={() => { remove(todo)} }>+</b>
+      <b style={{cursor: 'pointer'}} onClick={() => { complete(todo)} }>V</b>
     </li>
   );
 }
 
 
-const TodoList = ({todolist, remove}) => {
+const TodoList = ({todolist, remove, complete}) => {
   // map throurgh todolist
   const todoItem = todolist.map((todo) => {
-    return (<Todo todo={todo} remove={remove} />);
+    return (<Todo todo={todo} remove={remove} complete={complete}/>);
   });
   return( <ul>{todoItem}</ul> );
 }
@@ -38,6 +56,8 @@ class TodoApp extends Component {
     super(props);
     this.removeTodo = this.removeTodo.bind(this);
     this.indexOfElement = this.indexOfElement.bind(this);
+    this.completeTodo = this.completeTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
     this.state = {
       data: [ 
         {title: "buy milk",completed: false},
@@ -81,12 +101,21 @@ class TodoApp extends Component {
     console.log(this.state.data);
   }
 
+  addTodo(value){
+    let data = this.state.data;
+    data.push({title: value, completed: false})
+    console.log(data);
+    this.setState({data: data});
+    
+  }
+
 
   render(){
     return(
       <div>
         <Title count={this.state.data.length} />
-        <TodoList todolist={this.state.data} remove={this.removeTodo} />
+        <TodoForm addTodo={this.addTodo}/>
+        <TodoList todolist={this.state.data} remove={this.removeTodo} complete={this.completeTodo}/>
       </div>
     );
   }
