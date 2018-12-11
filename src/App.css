@@ -1,32 +1,217 @@
-.App {
-  text-align: center;
+/*  Reset */
+
+/*
+test
+*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+div {
+  box-sizing: border-box;
+  position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+html {
+  overflow: auto !important;
+}
+
+body {
+  zoom: 1;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-size: 100%;
+  font: inherit; */
+  letter-spacing: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  box-sizing: border-box;
+}
+
+img {
+  border: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.grid {
+  width: 100%;
+  max-width: 85%;
+  margin: auto;
+}
+
+.app-container{
+
+}
+
+.title-position {  
+}
+
+.todo-form{
+  border-radius: .3rem;
+  margin: .2rem 0;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-form input {
+  border: 1px solid lightgray;
+  border-radius: .3rem;
+  padding: .3rem 0;
+  margin-right: .2rem;
+  width: 80%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-form button {
+  padding: .3rem 0;
+  width: 20%;
+  border-radius: .3rem;
+  font-family: 'Ubuntu' sans-serif;
+  
+  transition: font-weight .15s ease;
+  cursor: pointer;
+  letter-spacing: .1rem;
 }
+
+.todo-form button:hover {
+  font-weight: 600;
+}
+
+
+.title{
+  background-color: lightgrey;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;  
+  border-radius: .3rem;
+}
+
+.h1{
+  letter-spacing: .3rem;
+  padding: .5rem 0;
+}
+
+
+
+
+.todo-list>li {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  border: 1px solid lightslategray;
+  border-radius: .3rem;
+  margin: .2rem 0;
+}
+
+.todo-list>li span{
+  display: inline-block;
+  /* vertical-align: middle;     */
+  font-family: 'Ubuntu', sans-serif;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: .1rem;
+  width: 86%;
+  /* outline: 1px solid green; */
+  padding-top: .6rem;
+
+
+}
+
+.close-wrap{
+  padding-right: .5rem;
+  width: 5%;
+  position: relative;
+  display: inline-block;
+  /* outline: 1px solid green; */
+}
+
+.close{
+  position: absolute;
+  text-align: center;
+  width: 100% !important;
+  height: 100%;
+  top: 0; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.5rem;
+  color: lightgray;
+  transform: rotate(45deg);
+  padding: .2rem;
+  transition: all .3ms ease;
+  /* outline: 1px solid red; */
+  
+}
+
+.close:hover{
+  color: darkgray;
+}
+
+.complete {
+    
+  height: 1.5rem;
+  display: inline-block;
+  text-align: center;
+  border: .1rem solid lightgray;
+  border-radius: 2rem;
+  margin: .4rem; 
+  display: inline-block;
+  width: 5%;
+  transition: border-color .3s ease;
+  font-size: 1rem;
+  font-weight: 200;
+  overflow: hidden;
+  /* outline: 1px solid green; */
+
+}
+
+
+.complete:hover{
+  border-color: darkgray;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+
+
+

@@ -6,8 +6,8 @@ import './App.css';
 // stateless conponend is declared as function element 
 const Title = (props) => {
   return (
-    <div>
-      <h1>ToDo list ({props.count})</h1>
+    <div className='title title-position'>
+      <h1 className='h1'>ToDo list ({props.count})</h1>
     </div>
   )
 }
@@ -16,15 +16,20 @@ const TodoForm = ({addTodo}) => {
   let input;
 
   return(
-    <div>
-      <input ref={ node => {
+    <div className='todo-form'>
+      <input placeholder=" enter your task" ref={ node => {
           input = node;
         }} />
 
       <button onClick={ () => {
+        {/* check es6 staff for if */}
+
+        {/* checking if value is empty */}
+        if(!input.value) return;
+  
         addTodo(input.value);
         input.value = '';
-        }}> + Add</button>
+        }}> +Add</button>
     </div>
   );
 };
@@ -34,9 +39,11 @@ const Todo = ({ todo, remove, complete }) => {
   // each todo 
   return(
     <li>
+      <b className='complete' style={{cursor: 'pointer'}} onClick={() => { complete(todo)} }>{todo.completed? 'V': null}</b>
       <span className={todo.completed ? 'completed' : null  }>{todo.title}</span>
-      <b style={{cursor: 'pointer'}} onClick={() => { remove(todo)} }>+</b>
-      <b style={{cursor: 'pointer'}} onClick={() => { complete(todo)} }>V</b>
+      <div className="close-wrap">
+        <b className='close' style={{cursor: 'pointer'}} onClick={() => { remove(todo)} }>+</b>
+      </div>
     </li>
   );
 }
@@ -47,7 +54,7 @@ const TodoList = ({todolist, remove, complete}) => {
   const todoItem = todolist.map((todo) => {
     return (<Todo todo={todo} remove={remove} complete={complete}/>);
   });
-  return( <ul>{todoItem}</ul> );
+  return( <ul className='todo-list'>{todoItem}</ul> );
 }
 
 
@@ -112,7 +119,7 @@ class TodoApp extends Component {
 
   render(){
     return(
-      <div>
+      <div className='app-container grid'>
         <Title count={this.state.data.length} />
         <TodoForm addTodo={this.addTodo}/>
         <TodoList todolist={this.state.data} remove={this.removeTodo} complete={this.completeTodo}/>
